@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, WebView, Dimensions } from 'react-native';
+import { TouchableOpacity, Text, View, WebView, Dimensions, Platform } from 'react-native';
 import { _constructStyles, _getElementClassStyles } from './HTMLStyles';
 import HTMLImage from './HTMLImage';
 
@@ -46,7 +46,8 @@ export function img (htmlAttribs, children, convertedCSSStyles, passProps = {}) 
     const { src, alt, width, height } = htmlAttribs;
     return (
         <HTMLImage
-          source={{ uri: src }}
+          source={{ uri: Platform.OS === 'android' ? 'file://' + src : '' + src }}
+        //   source={{ uri: src }}
           alt={alt}
           width={width}
           height={height}
