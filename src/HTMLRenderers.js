@@ -44,9 +44,10 @@ export function img (htmlAttribs, children, convertedCSSStyles, passProps = {}) 
         styleSet: 'IMAGE'
     });
     const { src, alt, width, height } = htmlAttribs;
+    const nreSrc = src.includes("bookapo.com") ? src : 'file://' + src;
     return (
         <HTMLImage
-          source={{ uri: Platform.OS === 'android' ? 'file://' + src : '' + src }}
+          source={{ uri: Platform.OS === 'android' ? nreSrc : src }}
         //   source={{ uri: src }}
           alt={alt}
           width={width}
